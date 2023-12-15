@@ -2,7 +2,7 @@ const model = require('../models/user');
 const router = require('express').Router();
 const {getToken} = require('../configs/token')
 const {getHash,checkHash} = require('../configs/bcrypt')
-const authentication = require('../middlewares/authentication')
+const auth = require('../middlewares/auth')
 router.post('/register',async(req,res)=>{
     const {email,password} = req.body;
     const hash = getHash(password);
@@ -34,7 +34,7 @@ router.post("/login", async (req, res) => {
     res.send("Failed");
   }
 });
-router.get('/getprofile',authentication,async(req,res)=>{
+router.get('/getprofile',auth,async(req,res)=>{
   const {id} =req.body;
   const user = await model.findById(id)
   res.send(user);

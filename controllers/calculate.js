@@ -1,5 +1,6 @@
 const router = require("express").Router();
-router.get('/',async(req,res)=>{
+const auth = require('../middlewares/auth')
+router.get('/',auth,async(req,res)=>{
     try{
         const {P,i,n} = req.body;
         const I = i / 100;
