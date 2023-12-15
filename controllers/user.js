@@ -37,6 +37,6 @@ router.post("/login", async (req, res) => {
 router.get('/getprofile',auth,async(req,res)=>{
   const {id} =req.body;
   const user = await model.findById(id)
-  res.send(user);
+  res.send(user.email);
 })
 module.exports = router;
